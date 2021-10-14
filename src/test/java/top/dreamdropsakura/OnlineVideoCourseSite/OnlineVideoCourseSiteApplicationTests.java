@@ -34,6 +34,7 @@ class OnlineVideoCourseSiteApplicationTests {
 	// 添加用户到users 表操作
 	@Test
 	public void addUser() {
+		// 不需要手动设置id ，mp 会自己生成（19位的id ）
 		Users users = new Users();
 		users.setName("Aqua");
 		users.setAge(20);
