@@ -35,6 +35,18 @@ class OnlineVideoCourseSiteApplicationTests {
 	@Test
 	public void addUser() {
 		// 不需要手动设置id ，mp 会自己生成（19位的id ）
+		// 在mariadb 中，数据类型BIGINT 就是Long
+		/*
+		 常见的主键生成策略（数据表的主键生成方式）
+		 参考链接：https://www.cnblogs.com/haoxinyue/p/5208136.html
+		 1.自动增长（AUTO_INCREMENT），每次的值都会自动生成。但在分库分表操作中，如果旧表最后一个id 为10000，那么新表在生成新的id 时需要先
+		 得到旧表的id 并+1 才能生成新表id
+		 2.UUID，每次操作生成一个随机的、唯一的数值。好处是新表生成id 时和旧表的id 或者上一个id 是无关联的。缺点是它是随机值，不能排序，不连续
+		 3.redis 原子操作，（看链接）
+		 4.mp 自带生成策略，生成19 位的值。每次生成都可以唯一。使用的是snowflake 算法（使用41bit 作为毫秒数，10bit 作为机器的ID （5个bit
+		 是数据中心，5个bit的机器ID ），12bit 作为毫秒内的流水号（意味着每个节点在每毫秒可以产生4096 个ID ），最后还有一个符号位，永远是0 ）
+		 。（具体看链接）
+		 */
 		Users users = new Users();
 		users.setName("Aqua");
 		users.setAge(20);
