@@ -3,7 +3,8 @@ package top.dreamdropsakura.OnlineVideoCourseSite;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.dreamdropsakura.OnlineVideoCourseSite.entity.User;
+//import top.dreamdropsakura.OnlineVideoCourseSite.entity.User;
+import top.dreamdropsakura.OnlineVideoCourseSite.entity.Users;
 import top.dreamdropsakura.OnlineVideoCourseSite.mapper.UserMapper;
 
 import java.util.List;
@@ -19,11 +20,12 @@ class OnlineVideoCourseSiteApplicationTests {
 	private UserMapper userMapper;
 
 	// 测试第一个增删查改功能
-	// 查询User 表中所有数据
+	// 查询users 表中所有数据
+	// 注意，类Users 在被指定为表名来做数据库操作时，会被自动转为全小写users
 	@Test
 	public void findAll() {
 		// queryWrapper: 查询条件
-		final List<User> users = userMapper.selectList(null);
+		final List<Users> users = userMapper.selectList(null);
 		//final List<User> users = userMapper.deleteById();
 		System.out.println(users);
 	}
