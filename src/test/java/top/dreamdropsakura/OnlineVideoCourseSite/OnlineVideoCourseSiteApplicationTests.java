@@ -24,6 +24,7 @@ class OnlineVideoCourseSiteApplicationTests {
 	public void findAll() {
 		// queryWrapper: 查询条件
 		final List<User> users = userMapper.selectList(null);
+		//final List<User> users = userMapper.deleteById();
 		System.out.println(users);
 	}
 
