@@ -30,6 +30,19 @@ class OnlineVideoCourseSiteApplicationTests {
 		System.out.println(users);
 	}
 
+	// 测试添加用户功能
+	// 添加用户到users 表操作
+	@Test
+	public void addUser() {
+		Users users = new Users();
+		users.setName("Aqua");
+		users.setAge(20);
+		users.setEmail("minatoaqua@cover.com");
+
+		final int insert = userMapper.insert(users);
+		System.out.println("INSERT : " + insert);
+	}
+
 	@Test
 	void contextLoads() {
 	}
