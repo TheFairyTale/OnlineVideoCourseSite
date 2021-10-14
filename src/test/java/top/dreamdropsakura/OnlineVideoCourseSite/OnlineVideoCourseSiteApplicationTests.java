@@ -18,7 +18,7 @@ class OnlineVideoCourseSiteApplicationTests {
 	@Autowired
 	private UserMapper userMapper;
 
-	// 测试第一个功能
+	// 测试第一个增删查改功能
 	// 查询User 表中所有数据
 	@Test
 	public void findAll() {
