@@ -17,6 +17,7 @@ public class Users {
     IdType.INPUT         不自动生成id ，需要手动设置id 值
     IdType.NONE          不使用策略
     IdType.UUID          生成随机唯一id 值
+    注意，当IdType 的类型为ID_WORKER、ID_WORKER_STR、UUID 时 主键由mp 的IdWorker 类生成 https://www.zhangshengrong.com/p/zAaOQo43Xd/
      */
     //@TableId(type = IdType.AUTO)
     private Long id;
