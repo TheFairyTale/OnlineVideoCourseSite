@@ -56,6 +56,19 @@ class OnlineVideoCourseSiteApplicationTests {
 		System.out.println("INSERT : " + insert);
 	}
 
+	// 测试修改或更新用户数据功能
+	@Test
+	public void updateUser() {
+		Users users = new Users();
+
+		// 由于是根据id 来修改目标用户，故需要传入id
+		users.setId(3L);
+		users.setAge(300);
+
+		final int row = userMapper.updateById(users);
+		System.out.println(row);
+	}
+
 	@Test
 	void contextLoads() {
 	}
