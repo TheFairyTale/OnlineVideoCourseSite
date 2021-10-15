@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import top.dreamdropsakura.OnlineVideoCourseSite.entity.Users;
 import top.dreamdropsakura.OnlineVideoCourseSite.mapper.UserMapper;
 
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -51,6 +52,12 @@ class OnlineVideoCourseSiteApplicationTests {
 		users.setName("Aqua");
 		users.setAge(20);
 		users.setEmail("minatoaqua@cover.com");
+
+		// 手动传入时间戳
+        //users.setCreateTime(new Date());
+        //users.setUpdateTime(new Date());
+
+		// 自动添加时间：mp 自动填充
 
 		final int insert = userMapper.insert(users);
 		System.out.println("INSERT : " + insert);
