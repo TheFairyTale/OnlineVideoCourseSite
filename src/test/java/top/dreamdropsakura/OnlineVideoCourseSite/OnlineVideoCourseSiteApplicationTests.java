@@ -49,11 +49,11 @@ class OnlineVideoCourseSiteApplicationTests {
 		 。（具体看链接）
 		 */
 		Users users = new Users();
-		users.setName("Aqua");
+		users.setName("RAIDEN SHOUGUN");
 		users.setAge(20);
-		users.setEmail("minatoaqua@cover.com");
+		users.setEmail("mihouyo@mihouyo.com");
 
-		// 手动传入时间戳
+		// 手动设置时间戳
         //users.setCreateTime(new Date());
         //users.setUpdateTime(new Date());
 
@@ -69,8 +69,8 @@ class OnlineVideoCourseSiteApplicationTests {
 		Users users = new Users();
 
 		// 由于是根据id 来修改目标用户，故需要传入id
-		users.setId(3L);
-		users.setAge(300);
+		users.setId(1448655614234828802L);
+		users.setAge(5);
 
 		final int row = userMapper.updateById(users);
 		System.out.println(row);

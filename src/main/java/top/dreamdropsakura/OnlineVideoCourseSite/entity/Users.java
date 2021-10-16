@@ -7,6 +7,10 @@ import lombok.Data;
 
 import java.util.Date;
 
+/*
+在业务中，代码编写没有说一定要怎么写，看你的“喜好”，只要能实现功能。但是无论哪种方法实现功能都最好应该了解。
+使用mybatis-plus 的自动填充功能，可以在不改变具体业务的代码的情况下，新增一个 向数据表添加字段内容 的功能（即改动最小/零代码改动）
+ */
 // 加上@Data 后就不用为属性写get / set 和无参构造方法的代码了，lombok 会自动生成
 @Data
 public class Users {
