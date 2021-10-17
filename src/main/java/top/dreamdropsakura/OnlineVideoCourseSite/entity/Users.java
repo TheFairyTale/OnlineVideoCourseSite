@@ -3,6 +3,7 @@ package top.dreamdropsakura.OnlineVideoCourseSite.entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 
 import java.util.Date;
@@ -46,6 +47,11 @@ public class Users {
     // 数据库字段create_time 等价于此处的createTime
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
+
+    // 版本号
+    @Version
+    private Integer version;
 }
