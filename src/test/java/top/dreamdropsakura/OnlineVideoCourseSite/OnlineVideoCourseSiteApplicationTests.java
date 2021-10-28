@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import top.dreamdropsakura.OnlineVideoCourseSite.entity.Users;
 import top.dreamdropsakura.OnlineVideoCourseSite.mapper.UserMapper;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -88,5 +89,12 @@ class OnlineVideoCourseSiteApplicationTests {
         // 然后修改
         users.setAge(200);
         userMapper.updateById(users);
+    }
+
+    // 多个id 批量查询
+    @Test
+    public void testSelectDemo1() {
+        List<Users> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
+        System.out.println(users);
     }
 }
