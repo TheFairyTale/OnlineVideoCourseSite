@@ -1,5 +1,6 @@
 package top.dreamdropsakura.OnlineVideoCourseSite;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -109,5 +110,32 @@ class OnlineVideoCourseSiteApplicationTests {
         List<Users> users = userMapper.selectByMap(objectObjectHashMap);
 
         users.forEach(System.out::println);
+    }
+
+    // 分页查询
+    @Test
+    public void testPage() {
+        //1. 创建page对象, 并传入参数current: 当前页; size: 每页要显示多少项
+        Page<Users> usersPage = new Page<>(1, 3);
+        //2. 调用mp 分页查询方法。
+        //调用mp 分页查询方法时，底层封装会将分页所有数据 封装到 page 对象中
+        userMapper.selectPage(usersPage, null);
+
+        //3. 获取分页数据
+        // 当前页
+        System.out.println(usersPage.getCurrent());
+        // 每页数据的list 集合
+        System.out.println(usersPage.getRecords());
+        // 每页显示记录数
+        System.out.println(usersPage.getSize());
+        // 获取表中所有的记录数
+        System.out.println(usersPage.getTotal());
+        // 获取总页数
+        System.out.println(usersPage.getPages());
+
+        // 是否有下一页
+        System.out.println(usersPage.hasNext());
+        // 是否有上一页
+        System.out.println(usersPage.hasPrevious());
     }
 }
