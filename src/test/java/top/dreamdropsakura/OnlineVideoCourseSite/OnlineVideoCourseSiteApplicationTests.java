@@ -7,6 +7,7 @@ import top.dreamdropsakura.OnlineVideoCourseSite.entity.Users;
 import top.dreamdropsakura.OnlineVideoCourseSite.mapper.UserMapper;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
@@ -96,5 +97,17 @@ class OnlineVideoCourseSiteApplicationTests {
     public void testSelectDemo1() {
         List<Users> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
         System.out.println(users);
+    }
+
+    // Hashmap 根据条件做查询
+    @Test
+    public void testSelectByMap() {
+        HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+        // 根据name、age 的值来做查询。当同时满足指定字段的指定值时返回数据
+        objectObjectHashMap.put("name", "Jone");
+        objectObjectHashMap.put("age", 18);
+        List<Users> users = userMapper.selectByMap(objectObjectHashMap);
+
+        users.forEach(System.out::println);
     }
 }
