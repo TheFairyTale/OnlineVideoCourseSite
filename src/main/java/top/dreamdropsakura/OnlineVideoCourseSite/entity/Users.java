@@ -2,7 +2,6 @@ package top.dreamdropsakura.OnlineVideoCourseSite.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 
@@ -53,5 +52,6 @@ public class Users {
 
     // 版本号字段
     @Version
+    @TableField(fill = FieldFill.INSERT)
     private Integer version;
 }

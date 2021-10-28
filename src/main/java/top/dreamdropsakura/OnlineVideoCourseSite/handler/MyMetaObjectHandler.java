@@ -18,6 +18,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // metaObject 元数据对象，
         this.setFieldValByName("createTime", new Date(), metaObject);
         this.setFieldValByName("updateTime", new Date(), metaObject);
+        this.setFieldValByName("version", 1, metaObject);
     }
 
     // 使用mp 实现的修改操作，在执行对数据表的修改操作时执行
