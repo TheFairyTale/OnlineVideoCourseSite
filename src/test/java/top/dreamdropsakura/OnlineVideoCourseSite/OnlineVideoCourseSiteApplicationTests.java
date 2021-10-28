@@ -47,9 +47,9 @@ class OnlineVideoCourseSiteApplicationTests {
 		 。（具体看链接）
 		 */
         Users users = new Users();
-        users.setName("RAIDEN SHOUGUN");
-        users.setAge(20);
-        users.setEmail("mihouyo@mihouyo.com");
+        users.setName("Other Board");
+        users.setAge(25);
+        users.setEmail("bindfe@flybird.com");
 
         // 手动设置时间戳
         //users.setCreateTime(new Date());
@@ -78,4 +78,16 @@ class OnlineVideoCourseSiteApplicationTests {
     void contextLoads() {
     }
 
+    // 测试乐观锁
+    @Test
+    public void testOptimisticLocker() {
+        // 根据id 查询数据
+        // 要使乐观锁生效，必须要先查询，然后再拿查询结果去修改。而不是直接上来就修改
+        Users users = userMapper.selectById(1453695089562202114L);
+        Users u2 = userMapper.selectById(3);
+
+        // 然后修改
+        users.setAge(200);
+        userMapper.updateById(users);
+    }
 }
