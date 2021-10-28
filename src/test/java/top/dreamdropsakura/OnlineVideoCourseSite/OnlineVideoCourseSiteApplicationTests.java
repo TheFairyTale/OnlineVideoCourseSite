@@ -84,7 +84,6 @@ class OnlineVideoCourseSiteApplicationTests {
         // 根据id 查询数据
         // 要使乐观锁生效，必须要先查询，然后再拿查询结果去修改。而不是直接上来就修改
         Users users = userMapper.selectById(1453695089562202114L);
-        Users u2 = userMapper.selectById(3);
 
         // 然后修改
         users.setAge(200);
