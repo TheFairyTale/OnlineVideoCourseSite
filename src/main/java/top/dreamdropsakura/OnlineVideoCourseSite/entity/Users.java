@@ -51,7 +51,7 @@ public class Users {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
-    // 版本号
+    // 版本号字段
     @Version
     private Integer version;
 }
