@@ -138,4 +138,11 @@ class OnlineVideoCourseSiteApplicationTests {
         // 是否有上一页
         System.out.println(usersPage.hasPrevious());
     }
+
+    // 物理删除操作
+    @Test
+    public void testDeleteById() {
+        int result = userMapper.deleteById(1L);
+        System.out.println(result);
+    }
 }
