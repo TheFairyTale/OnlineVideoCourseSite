@@ -27,4 +27,5 @@ public class MpConfig {
     }
 
     // 3.1.1 以上版本不需要注册逻辑删除插件
+    // SQL 分析打印功能不需要在此配置，而是在resources 下配置
 }
