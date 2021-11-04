@@ -152,4 +152,6 @@ class OnlineVideoCourseSiteApplicationTests {
         int result = userMapper.deleteBatchIds(Arrays.asList(4, 5, 10));
         System.out.println(result);
     }
+
+    // mybatis-plus 实现复杂查询操作
 }
