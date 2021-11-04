@@ -1,5 +1,6 @@
 package top.dreamdropsakura.OnlineVideoCourseSite;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,4 +155,11 @@ class OnlineVideoCourseSiteApplicationTests {
     }
 
     // mybatis-plus 实现复杂查询操作
+    @Test
+    public void testSelectQuery() {
+        // 创建QueryWrapper 对象
+        QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
+
+        //通过QueryWrapper 设置查询条件
+    }
 }
