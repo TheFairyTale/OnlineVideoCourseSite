@@ -145,4 +145,11 @@ class OnlineVideoCourseSiteApplicationTests {
         int result = userMapper.deleteById(1L);
         System.out.println(result);
     }
+
+    // 批量删除
+    @Test
+    public void testDeleteBatchIds() {
+        int result = userMapper.deleteBatchIds(Arrays.asList(4, 5, 10));
+        System.out.println(result);
+    }
 }
