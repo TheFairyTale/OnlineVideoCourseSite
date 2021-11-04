@@ -50,9 +50,9 @@ class OnlineVideoCourseSiteApplicationTests {
 		 。（具体看链接）
 		 */
         Users users = new Users();
-        users.setName("baomidou");
-        users.setAge(21);
-        users.setEmail("baomidou@baomidou.com");
+        users.setName("baobao");
+        users.setAge(19);
+        users.setEmail("baobao@baomidou.com");
 
         // 手动设置时间戳
         //users.setCreateTime(new Date());
