@@ -26,4 +26,5 @@ public class MpConfig {
         return interceptor;
     }
 
+    // 3.1.1 以上版本不需要注册逻辑删除插件
 }

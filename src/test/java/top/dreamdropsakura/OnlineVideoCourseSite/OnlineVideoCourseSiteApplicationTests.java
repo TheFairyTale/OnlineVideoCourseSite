@@ -50,9 +50,9 @@ class OnlineVideoCourseSiteApplicationTests {
 		 。（具体看链接）
 		 */
         Users users = new Users();
-        users.setName("Other Board");
-        users.setAge(25);
-        users.setEmail("bindfe@flybird.com");
+        users.setName("baomidou");
+        users.setAge(21);
+        users.setEmail("baomidou@baomidou.com");
 
         // 手动设置时间戳
         //users.setCreateTime(new Date());
@@ -139,10 +139,10 @@ class OnlineVideoCourseSiteApplicationTests {
         System.out.println(usersPage.hasPrevious());
     }
 
-    // 物理删除操作
+    // 逻辑删除操作
     @Test
     public void testDeleteById() {
-        int result = userMapper.deleteById(1L);
+        int result = userMapper.deleteById(1456204680991469570L);
         System.out.println(result);
     }
 

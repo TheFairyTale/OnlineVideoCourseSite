@@ -2,6 +2,7 @@ package top.dreamdropsakura.OnlineVideoCourseSite.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 
@@ -54,4 +55,9 @@ public class Users {
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Integer version;
+
+    // 逻辑删除.
+    // @TableLogic 注解用于实现数据库数据逻辑删除。该注解只对自动注入的sql 起效
+    @TableLogic
+    private Integer deleted;
 }
