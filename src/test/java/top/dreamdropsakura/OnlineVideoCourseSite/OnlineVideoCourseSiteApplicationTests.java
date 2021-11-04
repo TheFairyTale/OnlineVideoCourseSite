@@ -161,5 +161,38 @@ class OnlineVideoCourseSiteApplicationTests {
         QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
 
         //通过QueryWrapper 设置查询条件
+        /*
+         * ge
+         * gt
+         * le
+         * lt
+         */
+
+        /*
+         * eq
+         * ne
+         */
+
+        /*
+         * between
+         */
+
+        /*
+         * like         模糊查询
+         */
+
+        /*
+         * orderBy      排序查询
+         * orderByDesc
+         * orderByAsc
+         */
+
+        /*
+         * last
+         */
+
+        /*
+         * 指定要查询的列
+         */
     }
 }
