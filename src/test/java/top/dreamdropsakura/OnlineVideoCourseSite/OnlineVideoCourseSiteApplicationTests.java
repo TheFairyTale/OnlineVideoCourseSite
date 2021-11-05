@@ -160,18 +160,26 @@ class OnlineVideoCourseSiteApplicationTests {
         // 创建QueryWrapper 对象
         QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
 
-        //通过QueryWrapper 设置查询条件
-        /*
-         * ge
-         * gt
-         * le
-         * lt
+        // 通过QueryWrapper 设置查询条件
+        /* 可使用的一部分查询条件方法
+         * ge: greater than or equal to 大于等于
+         * gt: greater than             大于
+         * le: less than or equal to    小于等于
+         * lt: less than                小于
          */
+        // 查询age >= 30 的记录
+        //queryWrapper.ge("age", 30);
+        List<Users> usersGe = userMapper.selectList(queryWrapper);
+        System.out.println(usersGe);
 
         /*
-         * eq
-         * ne
+         * ne: not equal to             不等于
+         * eq: equal to                 等于
          */
+        // 查询age >= 30 的记录
+        queryWrapper.eq("name", "ENG");
+        List<Users> usersEq = userMapper.selectList(queryWrapper);
+        System.out.println(usersEq);
 
         /*
          * between
