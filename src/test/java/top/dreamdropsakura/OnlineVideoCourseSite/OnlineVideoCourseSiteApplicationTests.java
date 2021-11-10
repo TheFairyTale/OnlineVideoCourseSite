@@ -168,9 +168,7 @@ class OnlineVideoCourseSiteApplicationTests {
          * lt: less than                小于
          */
         // 查询age >= 30 的记录
-        //queryWrapper.ge("age", 30);
-        List<Users> usersGe = userMapper.selectList(queryWrapper);
-        System.out.println(usersGe);
+        queryWrapper.ge("age", 30);
 
         /*
          * ne: not equal to             不等于
@@ -178,29 +176,39 @@ class OnlineVideoCourseSiteApplicationTests {
          */
         // 查询age >= 30 的记录
         queryWrapper.eq("name", "ENG");
-        List<Users> usersEq = userMapper.selectList(queryWrapper);
-        System.out.println(usersEq);
 
         /*
          * between
          */
+        // 查询age 在 20 ~ 30 的数据
+        queryWrapper.between("age", 20, 30);
 
         /*
          * like         模糊查询
          */
+        queryWrapper.like("name", "bao");
 
         /*
          * orderBy      排序查询
-         * orderByDesc
-         * orderByAsc
+         * orderByDesc  降序排序
+         * orderByAsc   升序排序
          */
+        queryWrapper.orderByAsc("id");
 
         /*
          * last
+         * 在原有查询语句的末尾追加一条语句
          */
+        queryWrapper.last("limit 1");
 
         /*
-         * 指定要查询的列
+         * 指定要查询的列/字段
+         * wrapper.select(表字段名)
          */
+        queryWrapper.select("id", "name");
+
+
+        List<Users> usersResult = userMapper.selectList(queryWrapper);
+        System.out.println(usersResult);
     }
 }
