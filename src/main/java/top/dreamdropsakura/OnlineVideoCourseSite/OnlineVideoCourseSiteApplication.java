@@ -9,5 +9,4 @@ public class OnlineVideoCourseSiteApplication {
     public static void main(String[] args) {
         SpringApplication.run(OnlineVideoCourseSiteApplication.class, args);
     }
-
 }
