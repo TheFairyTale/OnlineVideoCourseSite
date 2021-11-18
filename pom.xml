@@ -5,6 +5,7 @@
     <modules>
         <module>service</module>
         <module>service/service_edu</module>
+        <module>service/service_vod</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -12,7 +13,7 @@
         <version>2.4.11</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>top.dreamdropsakura</groupId>
+    <groupId>asia.dreamdropsakura</groupId>
     <artifactId>OnlineVideoCourseSite</artifactId>
     <!-- 表示当前类型是pom 类型 -->
     <packaging>pom</packaging>
@@ -68,11 +69,22 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.4.1</version>
+            </dependency>
             <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
+            </dependency>
+            <!-- freemarker 模板引擎 -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.31</version>
             </dependency>
             <!--swagger-->
             <dependency>
