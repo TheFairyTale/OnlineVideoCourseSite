@@ -1,12 +1,22 @@
 package asia.dreamdropsakura.demo;
 
-import com.baomidou.mybatisplus.core.config.GlobalConfig;
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+//import com.baomidou.mybatisplus.core.config.GlobalConfig;
 
+import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.InjectionConfig;
+import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+// https://baomidou.com/guide/generator.html
 // 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
 public class CodeGenerator {
 
@@ -18,7 +28,7 @@ public class CodeGenerator {
     public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
+        help.append("请输入").append(tip).append("：");  // 这行代码可以替换为： System.out.println("请输入" + tip + "："); 具体原因看笔记Java 核心类StringBuilder
         System.out.println(help);
         if (scanner.hasNext()) {
             String ipt = scanner.next();
@@ -30,12 +40,14 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args) {
-        // 代码生成器
+        //1. 创建代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
-        // 全局配置
+        //2. 全局配置
         GlobalConfig gc = new GlobalConfig();
+        // 最好不要让它自己去识别，有时会识别错误。所以最好自己写一个绝对路径上去
         String projectPath = System.getProperty("user.dir");
+        // 代码输出目录
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("jobob");
         gc.setOpen(false);
