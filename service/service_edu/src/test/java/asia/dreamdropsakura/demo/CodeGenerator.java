@@ -48,7 +48,7 @@ public class CodeGenerator {
         // 最好不要让它自己去识别，有时会识别错误。所以最好自己写一个绝对路径上去
         String projectPath = System.getProperty("user.dir");
         // 代码输出目录
-        gc.setOutputDir(projectPath + "/src/main/java");
+        gc.setOutputDir("C:\\Users\\TheFairyTale\\Documents\\JavaWEB\\OnlineVideoCourseSite\\service\\service_edu" + "/src/main/java");
         gc.setAuthor("jobob");
         gc.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
