@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 src/main/resources/application.properties
 service/service_edu/src/main/resources/application.properties
+service/service_edu/src/test/java/asia/dreamdropsakura/demo/CodeGenerator.java
 !**/src/main/**/target/
 !**/src/test/**/target/
 
