@@ -12,7 +12,6 @@
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>untitled</module>
     </modules>
 
     <dependencies>
@@ -107,9 +106,5 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
-    </properties>
 
 </project>
