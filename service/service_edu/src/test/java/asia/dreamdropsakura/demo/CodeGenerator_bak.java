@@ -167,6 +167,7 @@ public class CodeGenerator_bak {
 
         //
         mpg.setStrategy(strategy);
+        // 设置velocityTemplateEngine
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         // 执行
         mpg.execute();
