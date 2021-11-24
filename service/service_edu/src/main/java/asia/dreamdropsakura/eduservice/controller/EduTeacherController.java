@@ -27,7 +27,7 @@ public class EduTeacherController {
     private IEduTeacherService teacherService;
 
     // rest风格接口
-    // @GetMapping("可以起个名字") 表示用Get 提交
+    // @GetMapping("字符") 处理请求方法的GET类型
 
     /**
      * 查询讲师表的所有数据
