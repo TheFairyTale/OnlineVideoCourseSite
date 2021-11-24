@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-11-23
  */
 @Service
+// ServiceImpl 中已经自动注入了baseMapper
 public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeacher> implements IEduTeacherService {
 
 }
