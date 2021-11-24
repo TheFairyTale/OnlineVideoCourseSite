@@ -7,3 +7,6 @@ spring.datasource.password=
 #spring.profiles.active= can be set to dev, test, prod
 spring.profiles.active=dev
 mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+#Global json time format
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone=GMT+8
