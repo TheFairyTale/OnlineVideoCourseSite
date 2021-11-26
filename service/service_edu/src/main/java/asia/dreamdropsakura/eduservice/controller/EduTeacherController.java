@@ -4,9 +4,7 @@ package asia.dreamdropsakura.eduservice.controller;
 import asia.dreamdropsakura.eduservice.entity.EduTeacher;
 import asia.dreamdropsakura.eduservice.service.IEduTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,4 +39,10 @@ public class EduTeacherController {
         return teacherService.list();
     }
 
+    // 逻辑删除讲师方法
+    // 删除时根据id 删除，将参数写为{id} 则表明id 需要通过路径进行传递，路径通过函数参数注解@PathVariable 传递
+    @DeleteMapping("{id}")
+    public boolean deleteTeacher(@PathVariable String id) {
+        return teacherService.removeById(id);
+    }
 }
