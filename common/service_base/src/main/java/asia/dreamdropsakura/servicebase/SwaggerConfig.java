@@ -39,8 +39,9 @@ public class SwaggerConfig {
                 // 设置在线文档的信息
                 .apiInfo(apiInfo())
                 .select()
-                //这里写的是API接口所在的包位置
-                .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller"))
+                // 这里写的是API接口所在的包位置
+                // 如果访问swagger 页面后发现没任何接口的文档，那可能是这里的包位置写错了
+                .apis(RequestHandlerSelectors.basePackage("asia.dreamdropsakura"))
                 // 路径中包含以下内容时则不显示
                 .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
