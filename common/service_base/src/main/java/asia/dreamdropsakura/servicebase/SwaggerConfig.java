@@ -8,6 +8,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -16,6 +17,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 // 表示它是配置类
 @Configuration
 public class SwaggerConfig {
+    // 自swagger2 之后，要为控制器类添加描述，要先在swagger 配置类中定义"标签"并添加标签，然后在对应的控制器类中添加对应的标签即可
+    public static final String EDU_TEACHER = "讲师管理模块";
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("API接口文档")
@@ -28,7 +32,7 @@ public class SwaggerConfig {
     /**
      * Swagger 插件
      *
-     * @return
+     * @return springfox.documentation.spring.web.plugins.Docket
      */
     @Bean
     public Docket createRestApi() {
@@ -36,8 +40,6 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 // 分组名称（可以随便起）
                 .groupName("webApi")
-                // 设置在线文档的信息
-                .apiInfo(apiInfo())
                 .select()
                 // 这里写的是API接口所在的包位置
                 // 如果访问swagger 页面后发现没任何接口的文档，那可能是这里的包位置写错了
@@ -47,6 +49,10 @@ public class SwaggerConfig {
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 //
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                // 设置在线文档的信息
+                .apiInfo(apiInfo())
+                // 定义"标签"并添加标签
+                .tags(new Tag(EDU_TEACHER, "eduservice controller description"));
     }
 }

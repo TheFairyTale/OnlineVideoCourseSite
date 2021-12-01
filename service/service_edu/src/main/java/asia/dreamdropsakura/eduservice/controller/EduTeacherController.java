@@ -3,6 +3,8 @@ package asia.dreamdropsakura.eduservice.controller;
 
 import asia.dreamdropsakura.eduservice.entity.EduTeacher;
 import asia.dreamdropsakura.eduservice.service.IEduTeacherService;
+import asia.dreamdropsakura.servicebase.SwaggerConfig;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,8 @@ import java.util.List;
  * @author TheFairyTale
  * @since 2021-11-23
  */
+// 自swagger2 之后，要为控制器类添加描述，要先在swagger 配置类中定义"标签"并添加标签，然后在对应的控制器类中添加对应的标签即可
+@Api(tags = {SwaggerConfig.EDU_TEACHER})
 @RestController
 @RequestMapping("/eduservice/edu-teacher")
 public class EduTeacherController {
