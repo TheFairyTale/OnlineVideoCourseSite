@@ -5,6 +5,8 @@ import asia.dreamdropsakura.eduservice.entity.EduTeacher;
 import asia.dreamdropsakura.eduservice.service.IEduTeacherService;
 import asia.dreamdropsakura.servicebase.SwaggerConfig;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +39,9 @@ public class EduTeacherController {
      * @return List<EduTeacher>
      */
     @GetMapping("listAllTeacher")
+    // @ApiParam 用于为参数定义说明
+    // @ApiOperation 用于为方法定义说明
+    @ApiOperation(value = "listAllTeacher", tags = {SwaggerConfig.LIST_ALL_EDU_TEACHER})
     public List<EduTeacher> listAllTeacher() {
         // 调用service 的方法，实现查询所有老师
         // 由于IEduTeacherService 继承了IService，所以可以直接调方法。
@@ -46,7 +51,10 @@ public class EduTeacherController {
     // 逻辑删除讲师方法
     // 删除时根据id 删除，将参数写为{id} 则表明id 需要通过路径进行传递，路径通过函数参数注解@PathVariable 传递
     @DeleteMapping("{id}")
-    public boolean deleteTeacher(@PathVariable String id) {
+    @ApiOperation(value = "deleteTeacher", tags = {SwaggerConfig.DELETE_TEACHER_VIA_ID_EDU_TEACHER})
+    public boolean deleteTeacher(
+            @ApiParam(name = "id", value = "讲师id", required = true)
+            @PathVariable String id) {
         return teacherService.removeById(id);
     }
 }
