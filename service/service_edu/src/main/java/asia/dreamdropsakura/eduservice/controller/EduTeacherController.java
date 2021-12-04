@@ -40,7 +40,9 @@ public class EduTeacherController {
     @GetMapping("listAllTeacher")
     // @ApiParam 用于为参数定义说明
     // @ApiOperation 用于为方法定义说明
-    @ApiOperation(value = "listAllTeacher", tags = {SwaggerConfig.LIST_ALL_EDU_TEACHER})
+    @ApiOperation(
+            value = "listAllTeacher",
+            tags = {SwaggerConfig.LIST_ALL_EDU_TEACHER})
     public R listAllTeacher() {
         // 调用service 的方法，实现查询所有老师
         // 由于IEduTeacherService 继承了IService，所以可以直接调方法。
@@ -55,7 +57,9 @@ public class EduTeacherController {
      */
     // 删除时根据id 删除，将参数写为{id} 则表明id 需要通过路径进行传递，路径通过函数参数注解@PathVariable 传递
     @DeleteMapping("{id}")
-    @ApiOperation(value = "deleteTeacher", tags = {SwaggerConfig.DELETE_TEACHER_VIA_ID_EDU_TEACHER})
+    @ApiOperation(
+            value = "deleteTeacher",
+            tags = {SwaggerConfig.DELETE_TEACHER_VIA_ID_EDU_TEACHER})
     public R deleteTeacher(
             @ApiParam(name = "id", value = "讲师id", required = true)
             @PathVariable String id) {
