@@ -1,7 +1,7 @@
 package asia.dreamdropsakura.commonutils;
 
 public enum ReturnParam {
-    ITEMS("items");
+    ITEMS("items"), TOTAL("total"), ROWS("rows");
 
     private final String name;
 

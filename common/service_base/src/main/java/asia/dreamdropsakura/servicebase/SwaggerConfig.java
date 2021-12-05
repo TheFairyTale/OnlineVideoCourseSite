@@ -19,8 +19,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
     // 自swagger2 之后，要为控制器类添加描述，要先在swagger 配置类中定义"标签"并添加标签，然后在对应的控制器类中添加对应的标签即可
     public static final String EDU_TEACHER = "讲师管理模块";
-    public static final String LIST_ALL_EDU_TEACHER = "列出所有讲师";
-    public static final String DELETE_TEACHER_VIA_ID_EDU_TEACHER = "根据id 删除讲师";
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
@@ -55,8 +53,6 @@ public class SwaggerConfig {
                 // 设置在线文档的信息
                 .apiInfo(apiInfo())
                 // 定义"标签"并添加标签
-                .tags(new Tag("EduTeacherController", EDU_TEACHER))
-                .tags(new Tag("listAllTeacher", LIST_ALL_EDU_TEACHER))
-                .tags(new Tag("deleteTeacher", DELETE_TEACHER_VIA_ID_EDU_TEACHER));
+                .tags(new Tag("EduTeacherController", EDU_TEACHER));
     }
 }
