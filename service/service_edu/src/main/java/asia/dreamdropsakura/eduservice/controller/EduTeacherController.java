@@ -3,13 +3,17 @@ package asia.dreamdropsakura.eduservice.controller;
 
 import asia.dreamdropsakura.commonutils.R;
 import asia.dreamdropsakura.commonutils.ReturnParam;
+import asia.dreamdropsakura.eduservice.entity.EduTeacher;
 import asia.dreamdropsakura.eduservice.service.IEduTeacherService;
 import asia.dreamdropsakura.servicebase.SwaggerConfig;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -42,7 +46,7 @@ public class EduTeacherController {
     // @ApiOperation 用于为方法定义说明
     @ApiOperation(
             value = "listAllTeacher",
-            tags = {SwaggerConfig.LIST_ALL_EDU_TEACHER})
+            tags = "列出所有讲师")
     public R listAllTeacher() {
         // 调用service 的方法，实现查询所有老师
         // 由于IEduTeacherService 继承了IService，所以可以直接调方法。
@@ -59,7 +63,7 @@ public class EduTeacherController {
     @DeleteMapping("{id}")
     @ApiOperation(
             value = "deleteTeacher",
-            tags = {SwaggerConfig.DELETE_TEACHER_VIA_ID_EDU_TEACHER})
+            tags = "根据id 删除讲师")
     public R deleteTeacher(
             @ApiParam(name = "id", value = "讲师id", required = true)
             @PathVariable String id) {
@@ -67,5 +71,30 @@ public class EduTeacherController {
             return R.success();
         }
         return R.failed();
+    }
+
+    /**
+     * 分页查询
+     *
+     * @return R
+     */
+    // 通过@GetMapping() 来传入参数 current 当前页，record 每页记录数
+    @GetMapping("splitPageQuery/{current}/{record}")
+    @ApiOperation(value = "splitPageQuery", tags = "根据当前页和每页记录数进行分页查询")
+    // 通过@PathVariable 获取从@GetMapping() 传来的值
+    public R splitPageQuery(
+            @PathVariable long current,
+            @PathVariable long record) {
+
+        // 先创建page 对象, Page<>(当前页，每页记录数)
+        Page<EduTeacher> splitPage = new Page<>(current, record);
+        // 调用方法实现分页. page(Page集合类对象， 分页条件)。调用方法时，底层封装将分页所有数据封装到pageTeacher 对象里面。
+        teacherService.page(splitPage, null);
+        // 获取总记录数
+        long total = splitPage.getTotal();
+        // 数据list 集合
+        List<EduTeacher> records = splitPage.getRecords();
+
+        return R.success().data(ReturnParam.TOTAL.toString(), total).data(ReturnParam.ROWS.toString(), records);
     }
 }
