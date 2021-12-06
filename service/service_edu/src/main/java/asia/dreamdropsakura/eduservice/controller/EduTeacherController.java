@@ -79,15 +79,15 @@ public class EduTeacherController {
      * @return R
      */
     // 通过@GetMapping() 来传入参数 current 当前页，record 每页记录数
-    @GetMapping("splitPageQuery/{current}/{record}")
+    @GetMapping("splitPageQuery/{currentPage}/{perPageRecords}")
     @ApiOperation(value = "splitPageQuery", tags = "根据当前页和每页记录数进行分页查询")
     // 通过@PathVariable 获取从@GetMapping() 传来的值
     public R splitPageQuery(
-            @PathVariable long current,
-            @PathVariable long record) {
+            @PathVariable long currentPage,
+            @PathVariable long perPageRecords) {
 
         // 先创建page 对象, Page<>(当前页，每页记录数)
-        Page<EduTeacher> splitPage = new Page<>(current, record);
+        Page<EduTeacher> splitPage = new Page<>(currentPage, perPageRecords);
         // 调用方法实现分页. page(Page集合类对象， 分页条件)。调用方法时，底层封装将分页所有数据封装到pageTeacher 对象里面。
         teacherService.page(splitPage, null);
         // 获取总记录数
