@@ -84,7 +84,7 @@ public class EduTeacherController {
     // rest风格接口
     // @GetMapping("字符") 处理请求方法的GET类型
     // 通过@GetMapping() 来传入参数
-    @GetMapping("splitPageQuery/{ currentPage }/{ perPageRecords }")
+    @GetMapping("splitPageQuery/{currentPage}/{perPageRecords}")
     @ApiOperation(value = "splitPageQuery", tags = "根据当前页和每页记录数进行分页查询")
     // 通过@PathVariable 获取从@GetMapping() 传来的值
     public R splitPageQuery(
@@ -106,22 +106,25 @@ public class EduTeacherController {
     /**
      * 多条件组合查询(动态sql：用xml 拼接SQL语句) 带分页方法
      *
-     * @param currentPage    当前页
+     * @param theCurrentPage 当前页
      * @param perPageRecords 每页记录数
      * @param teacherQuery   封装的对象，其中包含条件查询方法所需的条件值
      * @return R
      */
-    //@GetMapping("pageTeacherCondition/{ currentPage }/{ perPageRecords }")
-    @PostMapping("pageTeacherCondition/{ currentPage }/{ perPageRecords }")
+    //@GetMapping("pageTeacherCondition/{theCurrentPage}/{perPageRecords}")
+    @PostMapping("pageTeacherCondition/{theCurrentPage}/{perPageRecords}")
     @ApiOperation(value = "pageTeacherCondition", tags = "多条件组合查询带分页方法: 根据条件查询记录并分页")
     public R pageTeacherCondition(
-            @PathVariable long currentPage,
+            @PathVariable long theCurrentPage,
             @PathVariable long perPageRecords,
             // @ResponseBody 用于返回json 数据
             // @RequestBody 使该参数以json 格式返回数据并封装至对应对象当中, required = false 不强制要求有值
             @RequestBody(required = false) TeacherQuery teacherQuery) {
+
+        // todo: 实际上，service 应为业务逻辑层，这里不应该放这么多逻辑。
+
         // 创建page 对象
-        Page<EduTeacher> teacherPage = new Page<>(currentPage, perPageRecords);
+        Page<EduTeacher> teacherPage = new Page<>(theCurrentPage, perPageRecords);
         // 使用QueryWrapper 编辑并构建查询条件
         QueryWrapper<EduTeacher> teacherQueryWrapper = new QueryWrapper<>();
 
