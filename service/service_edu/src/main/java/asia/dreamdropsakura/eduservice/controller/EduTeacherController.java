@@ -118,8 +118,8 @@ public class EduTeacherController {
             @PathVariable long currentPage,
             @PathVariable long perPageRecords,
             // @ResponseBody 用于返回json 数据
-            // @RequestBody 使该参数以json 格式返回数据并封装至对应对象当中
-            @RequestBody TeacherQuery teacherQuery) {
+            // @RequestBody 使该参数以json 格式返回数据并封装至对应对象当中, required = false 不强制要求有值
+            @RequestBody(required = false) TeacherQuery teacherQuery) {
         // 创建page 对象
         Page<EduTeacher> teacherPage = new Page<>(currentPage, perPageRecords);
         // 使用QueryWrapper 编辑并构建查询条件
