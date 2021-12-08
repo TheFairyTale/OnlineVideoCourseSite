@@ -4,13 +4,17 @@ package asia.dreamdropsakura.eduservice.controller;
 import asia.dreamdropsakura.commonutils.R;
 import asia.dreamdropsakura.commonutils.ReturnParam;
 import asia.dreamdropsakura.eduservice.entity.EduTeacher;
+import asia.dreamdropsakura.eduservice.entity.vo.TeacherQuery;
 import asia.dreamdropsakura.eduservice.service.IEduTeacherService;
 import asia.dreamdropsakura.servicebase.SwaggerConfig;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +28,7 @@ import java.util.List;
  * @since 2021-11-23
  */
 // 自swagger2 之后，要为控制器类添加描述，要先在swagger 配置类中定义"标签"并添加标签，然后在对应的控制器类中添加对应的标签即可
-@Api(tags = {SwaggerConfig.EDU_TEACHER})
+@Api(SwaggerConfig.EDU_TEACHER)
 @RestController
 @RequestMapping("/eduservice/edu-teacher")
 public class EduTeacherController {
@@ -32,9 +36,6 @@ public class EduTeacherController {
     //0 在controller 中注入service -> 在对应的service 中注入mapper
     @Autowired
     private IEduTeacherService teacherService;
-
-    // rest风格接口
-    // @GetMapping("字符") 处理请求方法的GET类型
 
     /**
      * 查询讲师表的所有数据
@@ -56,7 +57,7 @@ public class EduTeacherController {
     /**
      * 删除讲师
      *
-     * @param id
+     * @param id 讲师uuid
      * @return R
      */
     // 删除时根据id 删除，将参数写为{id} 则表明id 需要通过路径进行传递，路径通过函数参数注解@PathVariable 传递
@@ -76,10 +77,14 @@ public class EduTeacherController {
     /**
      * 分页查询
      *
+     * @param currentPage    当前页
+     * @param perPageRecords 每页记录数
      * @return R
      */
-    // 通过@GetMapping() 来传入参数 current 当前页，record 每页记录数
-    @GetMapping("splitPageQuery/{currentPage}/{perPageRecords}")
+    // rest风格接口
+    // @GetMapping("字符") 处理请求方法的GET类型
+    // 通过@GetMapping() 来传入参数
+    @GetMapping("splitPageQuery/{ currentPage }/{ perPageRecords }")
     @ApiOperation(value = "splitPageQuery", tags = "根据当前页和每页记录数进行分页查询")
     // 通过@PathVariable 获取从@GetMapping() 传来的值
     public R splitPageQuery(
@@ -96,5 +101,55 @@ public class EduTeacherController {
         List<EduTeacher> records = splitPage.getRecords();
 
         return R.success().data(ReturnParam.TOTAL.toString(), total).data(ReturnParam.ROWS.toString(), records);
+    }
+
+    /**
+     * 多条件组合查询(动态sql：用xml 拼接SQL语句) 带分页方法
+     *
+     * @param currentPage    当前页
+     * @param perPageRecords 每页记录数
+     * @param teacherQuery   封装的对象，其中包含条件查询方法所需的条件值
+     * @return R
+     */
+    //@GetMapping("pageTeacherCondition/{ currentPage }/{ perPageRecords }")
+    @PostMapping("pageTeacherCondition/{ currentPage }/{ perPageRecords }")
+    @ApiOperation(value = "pageTeacherCondition", tags = "多条件组合查询带分页方法: 根据条件查询记录并分页")
+    public R pageTeacherCondition(
+            @PathVariable long currentPage,
+            @PathVariable long perPageRecords,
+            // @ResponseBody 用于返回json 数据
+            // @RequestBody 使该参数以json 格式返回数据并封装至对应对象当中
+            @RequestBody TeacherQuery teacherQuery) {
+        // 创建page 对象
+        Page<EduTeacher> teacherPage = new Page<>(currentPage, perPageRecords);
+        // 使用QueryWrapper 编辑并构建查询条件
+        QueryWrapper<EduTeacher> teacherQueryWrapper = new QueryWrapper<>();
+
+        // 1. 取出teacherQuery 对象中的查询值
+        // 讲师名
+        String teacherName = teacherQuery.getName();
+        // 讲师级别
+        Integer teacherLevel = teacherQuery.getLevel();
+        // 讲师注册时间
+        String begin = teacherQuery.getBegin();
+        String end = teacherQuery.getEnd();
+
+        // 2. 判断条件值是否为空，如果不为空则拼接条件
+        if (StringUtils.hasLength(teacherName)) {
+            teacherQueryWrapper.like("name", teacherName);
+        } else if (!ObjectUtils.isEmpty(teacherLevel)) {
+            teacherQueryWrapper.eq("level", teacherLevel);
+        } else if (StringUtils.hasLength(begin)) {
+            teacherQueryWrapper.ge("gmt_create", begin);
+        } else if (StringUtils.hasLength(end)) {
+            teacherQueryWrapper.le("gmt_modified", end);
+        }
+
+        // 实现条件查询分页
+        teacherService.page(teacherPage, teacherQueryWrapper);
+        long total = teacherPage.getTotal();
+        List<EduTeacher> records = teacherPage.getRecords();
+
+        return R.success().data(ReturnParam.TOTAL.toString(), total).data(ReturnParam.ITEMS.toString(), records);
     }
 }
