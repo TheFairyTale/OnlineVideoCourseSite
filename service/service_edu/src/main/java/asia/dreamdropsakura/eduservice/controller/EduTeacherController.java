@@ -155,4 +155,19 @@ public class EduTeacherController {
 
         return R.success().data(ReturnParam.TOTAL.toString(), total).data(ReturnParam.ITEMS.toString(), records);
     }
+
+    /**
+     * 新增讲师接口
+     *
+     * @param eduTeacher EduTeacher 实体类对象
+     * @return R
+     */
+    @ApiOperation(value = "addTeacher", tags = "新增讲师接口")
+    @PostMapping("addTeacher")
+    public R addTeacher(@RequestBody EduTeacher eduTeacher) {
+        if (teacherService.save(eduTeacher)) {
+            return R.success();
+        }
+        return R.failed();
+    }
 }
