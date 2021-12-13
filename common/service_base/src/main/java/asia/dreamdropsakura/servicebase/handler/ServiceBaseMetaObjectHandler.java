@@ -6,9 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * <p>
@@ -28,14 +26,14 @@ public class ServiceBaseMetaObjectHandler implements MetaObjectHandler {
         // fieldName 数据表中的字段名称，不是实体类中的属性名称
         logger.info("insert start ...");
         //this.setFieldValByName("gmtCreate", new Date(), metaObject);
-        this.strictInsertFill(metaObject, "gmt_create", Date.class, new Date());
+        //this.strictInsertFill(metaObject, "gmt_create", Date.class, new Date());
         //this.setFieldValByName("gmtModified", new Date(), metaObject);
-        this.strictInsertFill(metaObject, "gmtModified", Date.class, new Date());
+        //this.strictInsertFill(metaObject, "gmtModified", Date.class, new Date());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         logger.info("insert start ...");
-        this.setFieldValByName("gmtModified", dateFormat.format(DateFormat.getDateTimeInstance()), metaObject);
+        //this.setFieldValByName("gmtModified", dateFormat.format(DateFormat.getDateTimeInstance()), metaObject);
     }
 }
