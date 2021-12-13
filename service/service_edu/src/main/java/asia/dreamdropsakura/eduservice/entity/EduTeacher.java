@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 /**
  * <p>
@@ -54,9 +54,9 @@ public class EduTeacher implements Serializable {
 
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
-    private LocalDateTime gmtCreate;
+    private Date gmtCreate;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "更新时间")
-    private LocalDateTime gmtModified;
+    private Date gmtModified;
 }
