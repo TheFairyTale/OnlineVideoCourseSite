@@ -3,6 +3,9 @@ package asia.dreamdropsakura.eduservice.entity.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * @author TheFairyTale
+ */
 @Data
 public class TeacherQuery {
     @ApiModelProperty(value = "教师名称, 模糊查询")

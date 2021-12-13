@@ -1,12 +1,11 @@
 package asia.dreamdropsakura.eduservice.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -20,12 +19,24 @@ import java.sql.Date;
  * @since 2021-11-23
  */
 @Data
+/**
+ * 用来配置lombok如何产生和显示getters和setters的 注解,可以用在类或方法属性上面。
+ * 有三种类型fluent 布尔型、chain 布尔型、prefix String型
+ *
+ * fluent 表示生成的setter和getter方法没有前缀set和get，且setter方法返回的是当前对象。
+ * 即生成的getter方法不是getId(){}，而是id(){}；setter方法不是void setId(){}，而是Person id(int id){}
+ * 当fluent 为true 时，chain 也为true
+ *
+ * chain 生成的setter方法是void类型；方法返回this（当前对象）
+ *
+ */
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "EduTeacher对象", description = "讲师")
 public class EduTeacher implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     @ApiModelProperty(value = "讲师id")
     private String id;
 
