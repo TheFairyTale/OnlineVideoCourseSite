@@ -1,6 +1,8 @@
 package asia.dreamdropsakura.eduservice.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * <p>
@@ -65,9 +67,9 @@ public class EduTeacher implements Serializable {
 
     //@TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
-    private Date gmtCreate;
+    private Timestamp gmtCreate;
 
     //@TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "更新时间")
-    private Date gmtModified;
+    private Timestamp gmtModified;
 }

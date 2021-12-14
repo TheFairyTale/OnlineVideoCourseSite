@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 
@@ -16,7 +15,7 @@ import java.text.SimpleDateFormat;
  * @author TheFairyTale
  * @since 2021-12-09
  */
-@Component
+//@Component
 public class ServiceBaseMetaObjectHandler implements MetaObjectHandler {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final Logger logger = LogManager.getLogger("name");
