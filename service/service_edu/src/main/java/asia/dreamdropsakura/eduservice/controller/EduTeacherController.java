@@ -170,4 +170,15 @@ public class EduTeacherController {
         }
         return R.failed();
     }
+
+    /**
+     * 根据讲师id 进行查询
+     *
+     * @param id 讲师uuid
+     * @return R
+     */
+    @GetMapping("getTeacher/{id}")
+    public R getTeacher(@PathVariable String id) {
+        return R.success().data("teacher", teacherService.getById(id));
+    }
 }
