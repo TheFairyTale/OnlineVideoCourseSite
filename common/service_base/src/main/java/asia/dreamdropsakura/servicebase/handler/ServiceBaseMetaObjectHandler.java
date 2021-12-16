@@ -24,7 +24,7 @@ public class ServiceBaseMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        // fieldName 数据表中的字段名称，不是实体类中的属性名称
+        // fieldName 是实体类中的属性名称
         logger.info("insert start ...");
         this.setFieldValByName("gmtCreate", new Timestamp(System.currentTimeMillis()), metaObject);
         //this.strictInsertFill(metaObject, "gmt_create", Date.class, new Date());
