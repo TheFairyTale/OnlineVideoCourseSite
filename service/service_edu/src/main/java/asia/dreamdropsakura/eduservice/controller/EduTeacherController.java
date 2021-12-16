@@ -181,4 +181,16 @@ public class EduTeacherController {
     public R getTeacher(@PathVariable String id) {
         return R.success().data("teacher", teacherService.getById(id));
     }
+
+    /**
+     * 讲师修改功能
+     */
+    // 使用PostMapping 可以通过提交一整个实体类的值（其中包含该功能需要的信息，如id）来修改，不需要在方法里手动调方法添加id 来修改
+    @PostMapping("updateTeacher")
+    public R updateTeacher(@RequestBody EduTeacher eduteacher) {
+        if (teacherService.updateById(eduteacher)) {
+            return R.success();
+        }
+        return R.failed();
+    }
 }
