@@ -1,6 +1,7 @@
 package asia.dreamdropsakura.servicebase.exceptionhandler;
 
 import asia.dreamdropsakura.commonutils.R;
+import asia.dreamdropsakura.servicebase.exceptionhandler.newexceptionhandler.NewExceptionHandler;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GlobalExceptionHandler {
 
     /**
-     * 发生异常时执行
+     * 全局异常提示
      * 在此处添加ResponseBody 是为了返回异常提示语句(R.msg())
      *
      * @param e 包含所有异常（Exception.class）
@@ -22,6 +23,22 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public R error(Exception e) {
         e.printStackTrace();
-        return R.failed().msg("Global error invoked, Please check code if anywhere has problems.");
+        return R.failed().msg("Global error invoked, please check code if anywhere has problems.");
+    }
+
+    // 特定异常提示
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseBody
+    public R error(NullPointerException e) {
+        e.printStackTrace();
+        return R.failed().msg("NullPointerException error invoked, please check code if anywhere has problems.");
+    }
+
+    // 自定义异常
+    @ExceptionHandler(NewExceptionHandler.class)
+    @ResponseBody
+    public R error(NewExceptionHandler e) {
+        e.printStackTrace();
+        return R.failed().code(e.getCode()).msg(e.getMsg());
     }
 }
