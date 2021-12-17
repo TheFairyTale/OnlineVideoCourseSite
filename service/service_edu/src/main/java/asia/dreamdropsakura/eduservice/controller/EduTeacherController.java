@@ -26,14 +26,16 @@ import java.util.List;
  *
  * @author TheFairyTale
  * @since 2021-11-23
+ * 自swagger2 之后，要为控制器类添加描述，要先在swagger 配置类中定义"标签"并添加标签，然后在对应的控制器类中添加对应的标签即可
  */
-// 自swagger2 之后，要为控制器类添加描述，要先在swagger 配置类中定义"标签"并添加标签，然后在对应的控制器类中添加对应的标签即可
 @Api(SwaggerConfig.EDU_TEACHER)
 @RestController
 @RequestMapping("/eduservice/edu-teacher")
 public class EduTeacherController {
 
-    //0 在controller 中注入service -> 在对应的service 中注入mapper
+    /**
+     * 0 在controller 中注入service -> 在对应的service 中注入mapper
+     */
     @Autowired
     private IEduTeacherService teacherService;
 
@@ -43,8 +45,10 @@ public class EduTeacherController {
      * @return R
      */
     @GetMapping("listAllTeacher")
-    // @ApiParam 用于为参数定义说明
-    // @ApiOperation 用于为方法定义说明
+    /**
+     * @ApiParam 用于为参数定义说明
+     * @ApiOperation 用于为方法定义说明
+     */
     @ApiOperation(
             value = "listAllTeacher",
             tags = "列出所有讲师")
@@ -59,8 +63,9 @@ public class EduTeacherController {
      *
      * @param id 讲师uuid
      * @return R
+     * <p>
+     * 删除时根据id 删除，将参数写为{id} 则表明id 需要通过路径进行传递，路径通过函数参数注解@PathVariable 传递</p>
      */
-    // 删除时根据id 删除，将参数写为{id} 则表明id 需要通过路径进行传递，路径通过函数参数注解@PathVariable 传递
     @DeleteMapping("{id}")
     @ApiOperation(
             value = "deleteTeacher",
@@ -177,6 +182,7 @@ public class EduTeacherController {
      * @param id 讲师uuid
      * @return R
      */
+    @ApiOperation(value = "getTeacher", tags = "根据讲师id 进行查询")
     @GetMapping("getTeacher/{id}")
     public R getTeacher(@PathVariable String id) {
         return R.success().data("teacher", teacherService.getById(id));
@@ -184,7 +190,11 @@ public class EduTeacherController {
 
     /**
      * 讲师修改功能
+     *
+     * @param eduteacher EduTeacher 实体类，通过前端传来的id 会包含在这个实体类的id 属性中，方法会取出id 值然后进行修改
+     * @return R
      */
+    @ApiOperation(value = "updateTeacher", tags = "讲师修改功能")
     // 使用PostMapping 可以通过提交一整个实体类的值（其中包含该功能需要的信息，如id）来修改，不需要在方法里手动调方法添加id 来修改
     @PostMapping("updateTeacher")
     public R updateTeacher(@RequestBody EduTeacher eduteacher) {
