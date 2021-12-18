@@ -11,3 +11,4 @@ mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
 spring.jackson.time-zone=GMT+8
 #mybatis-plus.global-config.db-config.logic-delete-field=flag
+logging.level.root=DEBUG
