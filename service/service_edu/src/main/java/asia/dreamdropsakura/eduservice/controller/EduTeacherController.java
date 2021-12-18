@@ -127,7 +127,6 @@ public class EduTeacherController {
             @RequestBody(required = false) TeacherQuery teacherQuery) {
 
         // todo: 实际上，service 应为业务逻辑层，这里不应该放这么多逻辑。
-
         // 创建page 对象
         Page<EduTeacher> teacherPage = new Page<>(theCurrentPage, perPageRecords);
         // 使用QueryWrapper 编辑并构建查询条件
